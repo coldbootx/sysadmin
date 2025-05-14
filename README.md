@@ -1,2 +1,2 @@
 # sysadmin
-Alinux system admin tool
+A linux system admin tool
