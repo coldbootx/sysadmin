@@ -1,6 +1,4 @@
-#!/usr/bin/ksh93
-
-function update {
+function system_update {
   apt-get purge $(dpkg -l | grep '^rc' | awk '{print $2}')
   apt-get install -f
   apt-get update -y
