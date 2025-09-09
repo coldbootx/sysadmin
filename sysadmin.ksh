@@ -26,8 +26,7 @@ License: GNU GPL (version 3, or any later version).
 ################################################################
 #### disable case match
 ################################################################
-
-shopt -s nocasematch
+# shopt -s nocasematch
 
 ################################################################
 #### Create menue
