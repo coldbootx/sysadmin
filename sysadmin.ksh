@@ -103,7 +103,7 @@ case $choice in
     ;;
 8)
     echo "(example: 192.168.1):"
-    read -r "Enter IP range for ping sweep (e.g., 192.168.1): " ip_range
+    read ip_range;
     for ip in {1..254}; do
     ping -c 1 -W 1 "$ip_range.$ip" &> /dev/null && echo "$ip_range.$ip is up" &
     done
