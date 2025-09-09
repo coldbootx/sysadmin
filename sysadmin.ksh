@@ -68,17 +68,20 @@ case $choice in
     awk -F: '{print $1, $3, $7}' /etc/passwd | less
     ;;
 2)
-    read -r "Enter new username: " username
+    echo "enter users name:"
+    read username;
     useradd "$username"
     echo "User $username added."
     ;;
 3)
-    read -r "Enter username to delete: " username
+    echo "enter users name:"
+    read username;
     userdel -r "$username"
     echo "User $username deleted."
     ;;
 4)
-    read -r "Enter username to lock: " username
+    echo "enter users name:"
+    read username;
     usermod -L "$username"
     echo "User $username locked."
     ;;
