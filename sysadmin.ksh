@@ -36,8 +36,9 @@ echo "# 11) Run syspatch fw_update and update packages  #"
 echo "# 12) Reboot System                               #"
 echo "# 0) Exit                                         #"
 echo "###################################################"
-
-read -r "Enter choice: " choice
+echo ""
+echo "Please select your option:"
+read choice
 
 case $choice in
 1)
