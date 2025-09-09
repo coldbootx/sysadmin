@@ -95,7 +95,7 @@ case $choice in
     ;;
 7)
     echo "Listing open ports:"
-    netstat -tuln | grep LISTEN | less
+    netstat -na -f inet | grep LISTEN | less
     ;;
 8)
     echo "(example: 192.168.1):"
