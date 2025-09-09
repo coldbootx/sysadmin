@@ -81,9 +81,10 @@ case $choice in
     rcctl ls on | less
     ;;
 6)
-    read -r "Enter service name: " service
+    echo "enter name of service: (example: sshd):"
+    read service;
     echo "Choose action: start, stop, restart"
-    read -r "Action: " action
+    read action;
     rcctl "$action" "$service"
     ;;
 7)
@@ -91,6 +92,7 @@ case $choice in
     netstat -tuln | grep LISTEN | less
     ;;
 8)
+    echo "(example: 192.168.1):"
     read -r "Enter IP range for ping sweep (e.g., 192.168.1): " ip_range
     for ip in {1..254}; do
     ping -c 1 -W 1 "$ip_range.$ip" &> /dev/null && echo "$ip_range.$ip is up" &
