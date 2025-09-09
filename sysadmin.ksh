@@ -47,6 +47,7 @@ echo "# 9) Scan logs for intrusions                     #"
 echo "# 10) Scan logs for DOAS                          #"
 echo "# 11) Run syspatch fw_update and update packages  #"
 echo "# 12) Reboot System                               #"
+echo "# 13) Shut Down System                            #"
 echo "# 0) Exit                                         #"
 echo "###################################################"
 echo ""
@@ -125,6 +126,10 @@ case $choice in
 12)
     echo "Rebooting System"
     reboot
+    ;;
+13)
+    echo "Shuting Down System"
+    halt -p
     ;;
 0)
     echo "Exiting..."
