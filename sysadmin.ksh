@@ -43,7 +43,7 @@ function displaymsg {
 Program: sysadmin.ksh
 Version 1.0
 Author: William Butler (coldboot@mailfence.com)
-License: GNU GPL (version 3, or any later version).
+License: MIT License.
 "
 }
 
