@@ -24,10 +24,13 @@
 MSG="Hello $USER, Please select your option:"
 #### mtree_ids will become availible in Version 2
 #IDS_DIR="$HOME/sysadmin/mtree_ids"
-PASSWORD_LIST="$HOME/sysadmin/log/passwordlist.txt"
-PINGSWEEP_LOG="$HOME/sysadmin/log/pingsweep.txt"
-PORTSCAN_LOG="$HOME/sysadmin/log/portscan.txt"
+PASSWORD_LIST="passwordlist.txt"
+PINGSWEEP_LOG="pingsweep.txt"
+PORTSCAN_LOG="portscan.txt"
 HOST_IP="192.168.1"
+TARGET="$HOST_IP.$ip"
+START_IP=1
+END_IP=254
 remote_host='127.0.0.1'
 port_range=({0..100})
 PASSGEN_AMOUNT="10"
@@ -55,9 +58,10 @@ function passgen_sysadmin {
 }
 
 function pingsweep_sysadmin {
-    for IP in $(seq 1 254); do
-	ping -c 1 $HOST_IP.$IP > "$PINGSWEEP_LOG"
-    done
+	for ip in $(seq $START_IP $END_IP)
+	do
+    	ping -c 1 -W 1 "$TARGET" > /dev/null 2>&1 &
+	done
 }
 
 function portscan_sysadmin {
