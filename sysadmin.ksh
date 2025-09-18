@@ -57,7 +57,7 @@ function pingsweep_sysadmin {
 	for i in {1..254}
 	do
     ip="${HOST_IP}.${i}"
-    ping -c 1 -W 1 "$ip" > /dev/null 2>&1 && $PINGSWEEP_LOG
+    ping -c 1 -W 1 "$ip" > /dev/null 2>&1 && > $PINGSWEEP_LOG
     if [ $? -eq 0 ]; then
         echo "Host $ip is alive"
     else
@@ -69,8 +69,8 @@ done
 function portscan_sysadmin {
     for port in $(seq 20 100)
     do
-    nc -z -w 1 "$remote_host" "$port" && echo "Port $port is open" > "$PORTSCAN_LOG"
-    done
+    nc -z -w 1 "$remote_host" "$port" && echo "Port $port is open"
+    done > $PORTSCAN_LOG
 }
 
 function menu_sysadmin {
