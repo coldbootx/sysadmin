@@ -49,16 +49,9 @@ License: MIT License.
 }
 
 function passgen_sysadmin {
-    if [ -d "$PASSWORD_LIST" ]; then
-        for p in $(seq 1 $PASS_AMOUNT); do
-	        openssl rand -base64 48 | cut -c1-$PASS_LENGTH > "$PASSWORD_LIST"
-        done
-    else
-        mkdir ~/sysadmin/log
-        for p in $(seq 1 $PASS_AMOUNT); do
-	        openssl rand -base64 48 | cut -c1-$PASS_LENGTH > "$PASSWORD_LIST"
-        done
-    fi
+    for p in $(seq 1 $PASSGEN_AMOUNT); do
+	openssl rand -base64 48 | cut -c1-$PASSGEN_LENGTH
+    done
 }
 
 function pingsweep_sysadmin {
@@ -163,13 +156,11 @@ case $choice in
     ;;
 7)
     portscan_sysadmin
-    echo "Running port scan with netcat and saved to: $PORTSCAN_LOG"
-    menu_sysadmin
+    echo "Running port scan with netcat."
     ;;
 8)
     pingsweep_sysadmin
-    echo "Running a simple ping sweep and saved to: $PINGSWEEP_LOG"
-    menu_sysadmin
+    echo "Running a simple ping sweep"
     ;;
 9)
     echo "Reading /var/log/authlog:"
@@ -188,8 +179,7 @@ case $choice in
     ;;
 12)
     passgen_sysadmin
-    echo "Passwords generated and saved to: $PASSWORD_LIST"
-    menu_sysadmin
+    echo "Passwords generated."
     ;;
 
 13)
@@ -216,6 +206,10 @@ case $choice in
 esac
 
 }
+
+################################################################
+#### Run sysadmin functions
+################################################################
 
 menu_sysadmin
 displaymsg
