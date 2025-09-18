@@ -1,7 +1,7 @@
 ################################################################
 #### 
 #### Program:
-#### sysadmin.ksh
+#### sysadmin.ksh Version 1.0
 #### 
 #### Author/Contact:
 #### William Butler (coldboot@mailfence.com)
@@ -25,7 +25,7 @@
 #### user account.
 #### List running services. Start, stop, and restart services.
 #### List open ports with netcat. Run a simple ping sweep.
-#### Read authlog, secure, and pflog logs are piped to less.
+#### Read authlog, secure, and pflog. Logs are piped to less.
 #### Run password generator and save to logfile.
 #### Run full system update including: syspatch, fw_update, 
 #### and all packages. No ports update in this release.
