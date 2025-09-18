@@ -60,7 +60,7 @@ function passgen_sysadmin {
 function pingsweep_sysadmin {
 	for ip in $(seq $START_IP $END_IP)
 	do
-    	ping -c 1 -W 1 "$TARGET" > /dev/null 2>&1 &
+    	ping -c 1 -W 1 "$TARGET" > $PINGSWEEP_LOG
 	done
 }
 
