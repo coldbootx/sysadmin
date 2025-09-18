@@ -57,7 +57,7 @@ function pingsweep_sysadmin {
 	for i in {1..254}
 	do
     ip="${HOST_IP}.${i}"
-    ping -c 1 -W 1 "$ip" > /dev/null 2>&1
+    ping -c 1 -W 1 "$ip" > /dev/null 2>&1 && $PINGSWEEP_LOG
     if [ $? -eq 0 ]; then
         echo "Host $ip is alive"
     else
@@ -162,7 +162,8 @@ case $choice in
     ;;
 7)
     portscan_sysadmin
-    echo "Running port scan with netcat."
+    echo "Running port scan with netcat and saved to $PORTSCAN_LOG."
+	menu_sysadmin
     ;;
 8)
     pingsweep_sysadmin
@@ -185,11 +186,12 @@ case $choice in
     ;;
 12)
     passgen_sysadmin
-    echo "Passwords generated."
+    echo "Passwords generated and saved to $PASSWORD_LIST:"
+	menu_sysadmin
     ;;
 
 13)
-    echo "Run syspatch, fw_update, and updating packages"
+    echo "Running syspatch, fw_update, and updating all packages"
     syspatch
     fw_update
     pkg_add -Uu
