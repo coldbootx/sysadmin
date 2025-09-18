@@ -28,9 +28,6 @@ PASSWORD_LIST="passwordlist.txt"
 PINGSWEEP_LOG="pingsweep.txt"
 PORTSCAN_LOG="portscan.txt"
 HOST_IP="192.168.1"
-TARGET="$HOST_IP.$ip"
-START_IP=1
-END_IP=254
 remote_host='127.0.0.1'
 PASSGEN_AMOUNT="10"
 PASSGEN_LENGTH="15"
@@ -57,10 +54,16 @@ function passgen_sysadmin {
 }
 
 function pingsweep_sysadmin {
-	for ip in $(seq $START_IP $END_IP)
+	for i in {1..254}
 	do
-    	ping -c 1 "$TARGET" > $PINGSWEEP_LOG
-	done
+    ip="${HOST_IP}.${i}"
+    ping -c 1 -W 1 "$ip" > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "Host $ip is alive"
+    else
+        echo "Host $ip is unreachable"
+    fi
+done
 }
 
 function portscan_sysadmin {
