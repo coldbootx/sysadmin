@@ -32,7 +32,6 @@ TARGET="$HOST_IP.$ip"
 START_IP=1
 END_IP=254
 remote_host='127.0.0.1'
-port_range=({0..100})
 PASSGEN_AMOUNT="10"
 PASSGEN_LENGTH="15"
 MENU_COLOR="\033[0m"
