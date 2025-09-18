@@ -7,7 +7,7 @@
 #### William Butler (coldboot@mailfence.com)
 #### 
 #### License:
-#### GNU GPL (version 3, or any later version).
+#### MIT License
 #### 
 #### Description:
 #### This is a simple system admin tool writen in Korn shell for
