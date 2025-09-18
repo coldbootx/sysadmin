@@ -207,7 +207,7 @@ case $choice in
     halt -p
     ;;
 0)
-    echo "Exiting..."
+    echo "Exiting sysadmin System Admin Tool......."
     ;;
 *)
     echo "Invalid choice. Please try again."
