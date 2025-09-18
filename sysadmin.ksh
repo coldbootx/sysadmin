@@ -50,7 +50,7 @@ License: MIT License.
 function passgen_sysadmin {
     for p in $(seq 1 $PASSGEN_AMOUNT); do
 	openssl rand -base64 48 | cut -c1-$PASSGEN_LENGTH
-    done
+    done > $PASSWORD_LIST
 }
 
 function pingsweep_sysadmin {
