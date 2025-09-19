@@ -128,7 +128,7 @@ case $choice in
     echo "enter user name:"
     read -r username;
     if id "$username" > /dev/null 2>&1; then
-        rmuser "$username"
+        userdel -r "$username"
         echo "User $username deleted."
     else
         echo "User $username does not exist."
