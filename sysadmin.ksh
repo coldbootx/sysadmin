@@ -122,20 +122,17 @@ case $choice in
         echo "User $username exists."
     else
         useradd "$username"
-        echo "User $username added."
     fi
-    menu_sysadmin
     ;;
 3)
     echo "enter user name:"
     read -r username;
     if id "$username" > /dev/null 2>&1; then
-        userdel -r "$username"
+        rmuser "$username"
         echo "User $username deleted."
     else
         echo "User $username does not exist."
     fi
-    menu_sysadmin
     ;;
 4)
     echo "enter user name:"
