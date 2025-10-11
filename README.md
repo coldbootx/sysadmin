@@ -9,28 +9,35 @@
 #### License:
 #### MIT License
 #### 
-#### Description:
-#### This is a simple system admin tool writen in Korn shell for
-#### the OpenBSD systems.
-#### 
-#### Assumptions:
-#### The system admin tool assumes you use on an OpenBSD system.
-#### 
-#### Dependencies: 
-#### A OpenBSD system
-#### 
-#### Products:
-#### The system admin tool provides easy user managment: 
-#### List all users, UIDs, and shells. Add, del, and lock 
-#### user account.
-#### List running services. Start, stop, and restart services.
-#### List open ports with netcat. Run a simple ping sweep.
-#### Read authlog, secure, and pflog. Logs are piped to less.
-#### Run password generator and save to logfile.
-#### Run full system update including: syspatch, fw_update, 
-#### and all packages. No ports update in this release.
-####
-#### Configured Usage:
-#### The system admin tool should be run with doas.
+# OpenBSD System Administration Tool (sysadmin.ksh)
+
+## Overview
+
+`sysadmin.ksh` is a comprehensive command-line system administration tool designed specifically for OpenBSD systems. It provides a user-friendly menu-driven interface to perform common administrative tasks such as user management, service control, network scanning, log viewing, system updates, and more.
+
+## Features
+
+- List all users with UID and shell information
+- Add, delete, and lock user accounts
+- List, start, stop, and restart system services
+- Perform network port scans and ping sweeps
+- Read and filter system logs
+- Generate secure random passwords
+- Perform full system updates
+- Reboot or shut down the system
+- Action logging with timestamps
+
+## Requirements
+
+- OpenBSD operating system
+- Basic command-line knowledge
+- Root or superuser privileges for certain actions (e.g., user management, system updates, reboot/shutdown)
+
+## Usage
+
+1. Save the script as `sysadmin.ksh`.
+2. Make it executable:
+   ```bash
+   chmod +x sysadmin.ksh
 #### 
 ################################################################
