@@ -1,11 +1,3 @@
-# Program:
-# sysadmin.ksh Version 1.0
-# 
-# Author/Contact:
-# William Butler (coldboot@mailfence.com)
- 
-# License:
-# MIT License 
 # OpenBSD System Administration Tool (sysadmin.ksh)
 
 # Overview
