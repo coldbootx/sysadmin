@@ -133,7 +133,7 @@ function pingsweep_sysadmin {
   : > "$PINGSWEEP_LOG"
   for i in $(seq 1 254); do
     ip="${HOST_IP}.${i}"
-    if ping -c 1 -W 1 "$ip"; then
+    if ping -c 1 "$ip"; then
       echo "Host $ip is alive" | tee -a "$PINGSWEEP_LOG"
     else
       echo "Host $ip is unreachable" | tee -a "$PINGSWEEP_LOG"
@@ -338,7 +338,7 @@ function main_menu {
         read -r act
         case "$act" in
           start|stop|restart)
-            manage_service "$service" "$act"
+            manage_service "$service" -f "$act"
             ;;
           *)
             print_msg warn "Invalid action."
