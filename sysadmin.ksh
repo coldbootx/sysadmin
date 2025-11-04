@@ -21,7 +21,7 @@ fi
 ################################################################
 #### Set config file and function library
 ################################################################
-#### will become availible in Version 2
+#### will become available in Version 2
 # CFILE=$HOME/sysadmin/sysadmin.conf
 # export FPATH=$HOME/sysadmin/functions
 
@@ -73,7 +73,7 @@ function print_msg {
 function confirm {
   print -n "Are you sure? (y/n): "
   read -r answer
-  if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
     print_msg warn "Action canceled."
     return 1
   fi
@@ -86,7 +86,7 @@ function confirm {
 
 function validate_username {
   local username=$1
-  if [[ -z "$username" ]]; then
+  if [ -z "$username" ]; then
     print_msg error "Username cannot be empty."
     return 1
   fi
@@ -99,7 +99,7 @@ function validate_username {
 
 function validate_service {
   local service=$1
-  if [[ -z "$service" ]]; then
+  if [ -z "$service" ]; then
     print_msg error "Service name cannot be empty."
     return 1
   fi
@@ -131,7 +131,7 @@ function passgen_sysadmin {
 function pingsweep_sysadmin {
   print_msg info "Starting ping sweep..."
   : > "$PINGSWEEP_LOG"
-  for i in {1..254}; do
+  for i in $(seq 1 254); do
     ip="${HOST_IP}.${i}"
     if ping -c 1 -W 1 "$ip"; then
       echo "Host $ip is alive" | tee -a "$PINGSWEEP_LOG"
@@ -336,11 +336,14 @@ function main_menu {
         read -r service
         print -n "Action (start/stop/restart): "
         read -r act
-        if [[ "$act" =~ ^(start|stop|restart)$ ]]; then
-          manage_service "$service" "$act"
-        else
-          print_msg warn "Invalid action."
-        fi
+        case "$act" in
+          start|stop|restart)
+            manage_service "$service" "$act"
+            ;;
+          *)
+            print_msg warn "Invalid action."
+            ;;
+        esac
         ;;
       5) portscan_sysadmin ;;
       6) pingsweep_sysadmin ;;
