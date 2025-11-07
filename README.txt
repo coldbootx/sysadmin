@@ -49,7 +49,3 @@ For questions or support, contact: coldboot@mailfence.com.com
 Disclaimer:
 -----------
 This script is provided 'as-is' without any warranty. Use at your own risk.
-
----
-
-Would you like me to save this as a downloadable file or customize it further?
