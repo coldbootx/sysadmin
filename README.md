@@ -1,4 +1,3 @@
-
 OpenBSD System Administration Script
 Overview
 
@@ -41,4 +40,4 @@ Run the script as root:
 
           
 
-doas ./sysadmin.sh
+sudo ./sysadmin.sh
