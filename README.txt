@@ -11,6 +11,7 @@ Features:
 - Color-enhanced bordered menus
 - User management (add, delete, lock users)
 - Service status checking and control (start, stop, restart)
+- Service boot control (enable and disable on boot)
 - Network tools: ping sweep and port scanning
 - Log viewing (authlog, secure, pflog)
 - Password generation
@@ -49,3 +50,4 @@ For questions or support, contact: coldboot@mailfence.com.com
 Disclaimer:
 -----------
 This script is provided 'as-is' without any warranty. Use at your own risk.
+
