@@ -1,0 +1,12 @@
+function unlock_user {
+  print -n "Enter username to unlock: "
+  read -r username
+  if validate_username "$username"; then
+    if usermod -U "$username"; then
+      print_msg success "User '$username' unlocked successfully."
+      log_action "Unlocked user '$username'"
+    else
+      print_msg error "Failed to unlock user '$username'."
+    fi
+  fi
+}

@@ -1,0 +1,8 @@
+function validate_network {
+  local network=$1
+  if ! echo "$network" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+    print_msg error "Invalid network format. Use format: XXX.XXX.XXX"
+    return 1
+  fi
+  return 0
+}

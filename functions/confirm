@@ -1,0 +1,9 @@
+function confirm {
+  print -n "Are you sure? (y/n): "
+  read answer
+  if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+    print_msg warn "Action canceled."
+    return 1
+  fi
+  return 0
+}

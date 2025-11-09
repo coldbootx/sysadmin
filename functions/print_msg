@@ -1,0 +1,16 @@
+function print_msg {
+  local msg_type=$1
+  shift
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[0;33m'
+  BLUE='\033[0;34m'
+  NC='\033[0m' # Reset Color
+  case "$msg_type" in
+    info) print "$GREEN[INFO]$NC $*" ;;
+    warn) print "$YELLOW[WARNING]$NC $*" ;;
+    error) print "$RED[ERROR]$NC $*" >&2 ;;
+    success) print "$BLUE[SUCCESS]$NC $*" ;;
+    *) print "$*" ;;
+  esac
+}

@@ -1,0 +1,5 @@
+function cleanup {
+  # Add any temporary file cleanup logic here
+  return 0
+}
+trap cleanup INT TERM EXIT

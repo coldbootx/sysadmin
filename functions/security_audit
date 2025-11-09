@@ -1,0 +1,49 @@
+function security_audit {
+  log_dir="/$HOME/security_audit_$(date '+%Y%m%d_%H%M%S')"
+  mkdir -p "$log_dir"
+
+  print_msg info "Starting Security Audit..."
+
+  # 1. Check recent failed login attempts
+  grep "Failed password" /var/log/authlog > "$log_dir/failed_login_attempts.txt"
+
+  # 2. List current logged-in users
+  who > "$log_dir/active_sessions.txt"
+
+  # 3. List suspicious processes (owned by root or with suspicious commands)
+  ps aux | awk '$1=="root" || $8~"sh|bash|nc|nmap|netcat"' > "$log_dir/suspicious_processes.txt"
+
+  # 4. List open network sockets
+  netstat -a -f inet > "$log_dir/open_ports.txt"
+
+  # 5. Check permissions of critical files
+  ls -l /etc/passwd /etc/ssh/sshd_config > "$log_dir/critical_files_permissions.txt"
+
+  # 6. List recent changes in /etc
+  find /etc -type f -mtime -7 -exec ls -l {} \; > "$log_dir/recent_changes.txt"
+
+  # 7. Verify pf rules (if pf is enabled)
+  if [ -f /etc/pf.conf ]; then
+    print "PF rules:" > "$log_dir/pf_rules.txt"
+    cat /etc/pf.conf >> "$log_dir/pf_rules.txt"
+  fi
+
+  # 8. Check for active services
+  print "Active services:" > "$log_dir/active_services.txt"
+  sockstat -l | grep -E 'sshd|httpd|ntpd|smtpd' >> "$log_dir/active_services.txt"
+
+  # 9. Verify package signatures (if `signify` is used)
+  if command -v signify > /dev/null; then
+    print "Verifying package signatures:"
+    signify -C -p /etc/signify.pub -x /var/db/pkg/archives/*.tgz
+  fi
+
+  # 10. List installed packages
+  pkg_info > "$log_dir/installed_packages.txt"
+
+  # 11. Check for SSH authorized keys
+  ls -l /etc/ssh/authorized_keys /root/.ssh/authorized_keys > "$log_dir/ssh_authorized_keys.txt"
+
+  log_action "Performed OpenBSD security audit"
+  print_msg success "Security audit completed. Check logs in $log_dir"
+}

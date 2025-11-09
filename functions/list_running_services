@@ -1,0 +1,5 @@
+function list_running_services {
+  print_msg info "Listing all running services..."
+  rcctl ls started | less
+  log_action "Listed running services"
+}

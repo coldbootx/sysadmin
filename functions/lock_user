@@ -1,0 +1,12 @@
+function lock_user {
+  print -n "Enter username to lock: "
+  read -r username
+  if validate_username "$username"; then
+    if usermod -L "$username"; then
+      print_msg success "User '$username' locked successfully."
+      log_action "Locked user '$username'"
+    else
+      print_msg error "Failed to lock user '$username'."
+    fi
+  fi
+}

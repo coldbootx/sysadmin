@@ -1,0 +1,12 @@
+function add_user {
+  print -n "Enter username to add: "
+  read -r username
+  if validate_username "$username"; then
+    if useradd "$username"; then
+      print_msg success "User '$username' added successfully."
+      log_action "Added user '$username'"
+    else
+      print_msg error "Failed to add user '$username'."
+    fi
+  fi
+}

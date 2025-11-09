@@ -1,0 +1,39 @@
+function read_logs_menu {
+  while true; do
+    print "$GREEN##########################################$NC"
+    print "$GREEN#             Read Logs Menu             #$NC"
+    print "$GREEN##########################################$NC"
+    print "$GREEN# 1) Read /var/log/authlog               #$NC"
+    print "$GREEN# 2) Read /var/log/secure                #$NC"
+    print "$GREEN# 3) Read /var/log/pflog                 #$NC"
+    print "$GREEN# 0) Return to main menu                 #$NC"
+    print "$GREEN##########################################$NC"
+    print -n $GREEN"Select an option: "$NC
+    read log_choice
+
+    case "$log_choice" in
+      1)clear_screen &&
+        print "Reading /var/log/authlog:"
+        grep "Failed password" /var/log/authlog | less
+        log_action "Read /var/log/authlog"
+        ;;
+      2)clear_screen &&
+        print "Reading /var/log/secure:"
+        grep "doas" /var/log/secure | less
+        log_action "Read /var/log/secure"
+        ;;
+      3)clear_screen &&
+        print "Reading /var/log/pflog:"
+        tcpdump -n -e -ttt -r /var/log/pflog | less
+        log_action "Read /var/log/pflog"
+        ;;
+      0)
+        break
+        ;;
+      *)
+        print_msg warn "Invalid choice."
+        ;;
+    esac
+    clear_screen
+  done
+}

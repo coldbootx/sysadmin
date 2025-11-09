@@ -1,0 +1,5 @@
+function log_action {
+  mkdir -p "$(dirname "$LOG_FILE")"
+  touch "$LOG_FILE" 2>/dev/null
+  print "$(date '+%B %d, %Y %H:%M:%S') - $1" >> "$LOG_FILE"
+}

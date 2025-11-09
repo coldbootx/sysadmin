@@ -1,0 +1,15 @@
+function passgen_sysadmin {
+  print -n "Enter number of passwords to generate (default: 10): "
+  read -r amount
+  amount=${amount:-10}
+  print -n "Enter password length (default: 15): "
+  read -r length
+  length=${length:-15}
+  : > "$PASSWORD_LIST"
+  count=1
+  while [ "$count" -le "$amount" ]; do
+    openssl rand -base64 48 | cut -c1-"$length" >> "$PASSWORD_LIST"
+    count=$((count + 1))
+  done
+  print_msg success "Passwords generated and saved to $PASSWORD_LIST"
+}
