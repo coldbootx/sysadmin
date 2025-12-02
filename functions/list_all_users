@@ -1,5 +1,0 @@
-function list_all_users {
-  print_msg info "Listing all users..."
-  awk -F: '{print $1, $3, $7}' /etc/passwd | less
-  log_action "Listed all users"
-}

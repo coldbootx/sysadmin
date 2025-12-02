@@ -1,6 +1,0 @@
-function require_cmd {
-  command -v "$1" >/dev/null 2>&1 || {
-    echo "Error: required command '$1' not found." >&2
-    exit 1
-  }
-}

@@ -1,8 +1,0 @@
-function validate_username {
-  local username=$1
-  if [ -z "$username" ]; then
-    print_msg error "Username cannot be empty."
-    return 1
-  fi
-  return 0
-}
